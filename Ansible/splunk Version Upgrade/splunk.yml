@@ -1,0 +1,29 @@
+--
+- name: Splunk Upgrade to latest version
+  host: servers
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Checking splunk status
+      gather_facts: false
+      shell : ps -aux | grep [s]plunkd
+      register: process
+      ignore_errors: true
+
+    - name: Stop splunk
+      shell: /opt/splunkforwarder/splunk stop
+      when: process.stdout!=""
+      
+    - name: Check Splunk version
+      shell: rpm -qa | grep -i splunk
+      register: version
+      changed_when: false
+      failed_when: false
+
+    - name: Remove old version
+      shell: rpm -e {{ version.stdout }}
+
+    - name: Download latest package
+      get_url: 
+        url: wget splunk.x.x.x
+        dest: /tmp
