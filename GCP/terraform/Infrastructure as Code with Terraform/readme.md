@@ -31,3 +31,24 @@ terraform --version
 <img width="465" height="408" alt="image" src="https://github.com/user-attachments/assets/344c02b2-ab87-4e20-b4d6-0225c2f2c54c" />
 
 <h2> initialization</h2>
+Run terraform init to initialize the new terraform configuration file
+<img width="699" height="331" alt="image" src="https://github.com/user-attachments/assets/b0b6fc13-df80-4e83-9390-c81e1d620d85" />
+
+<h2> Create resource</h2>
+1. Apply you configuration now by running the command terraform apply:
+The output has a + next to resource "google_compute_network" "vpc_network", meaning that Terraform will create this resource. Beneath that, it shows the attributes that will be set. When the value displayed is (known after apply), it means that the value won't be known until the resource is created.
+
+If the plan was created successfully, Terraform will now pause and wait for approval before proceeding. If anything in the plan seems incorrect or dangerous, it is safe to abort here with no changes made to your infrastructure.
+
+If terraform apply failed with an error, read the error message and fix the error that occurred.
+
+2. The plan looks acceptable here, so type yes at the confirmation prompt, and press ENTER to proceed.
+Executing the plan takes a few minutes since Terraform waits for the network to be created successfully:
+<img width="1102" height="515" alt="image" src="https://github.com/user-attachments/assets/15501472-b310-4132-824b-20d79f698688" />
+
+3. After this, Terraform is all done! You can go to the Cloud console to see the network you have provisioned.
+<img width="1117" height="251" alt="image" src="https://github.com/user-attachments/assets/ff8458b6-3c96-4eaf-8049-e70e22a51f6f" />
+
+4. Run terraform show to know the current state
+
+
